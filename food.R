@@ -482,6 +482,10 @@ boxplot(fd_all$calories_total_grams)
 # copy df
 fd <- fd_all
 
+#########
+# calculate proportions
+#########
+
 # meat
 fd <- fd %>% mutate(isMeat = ifelse(food_name_type == "meategg",1,0))
 fd <- fd %>% mutate(meat_calories = ifelse(isMeat == 1,calories_total_grams,0))
@@ -495,10 +499,6 @@ fd <- fd %>% mutate(isProtein = ifelse(food_name_type == "fishlarge"|
                                                        food_name_type == "fishsmall"|
                                                        food_name_type == "meategg",1,0))
 fd <- fd %>% mutate(protein_calories = ifelse(isProtein == 1,calories_total_grams,0))
-
-#########
-# calculate proportions
-#########
 
 # meat
 pct_meat <- fd %>% group_by(hh_ID, week_number) %>% tally(isMeat)
@@ -543,6 +543,8 @@ protein <- fd %>% group_by(hh_ID, week_number) %>% tally(protein_calories)
 protein <- protein %>% mutate(protein_calories_wk = n) %>% select(-n)
 weekly_protein <- merge(fish, meat, by = c("hh_ID","week_number"))
 weekly_protein <- merge(weekly_protein, protein, by = c("hh_ID","week_number"))
+
+# write csv
 write.csv(weekly_protein, "weekly_protein.csv")
 
 # selct variables
