@@ -39,7 +39,7 @@ for(p in requiredPackages){
 #########
 
 # set wd
-mydirectory <- "/Users/mari/bangladesh/bangladesh_food"
+mydirectory <- "/Users/mari/bangladesh/bangladesh_food/data"
 setwd(mydirectory)
 
 filenames <- list.files(path=mydirectory, pattern=".*dta")
