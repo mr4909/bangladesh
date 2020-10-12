@@ -1,0 +1,281 @@
+food_name,food_ID,food_name_type,calories_grams
+Other food outside of home,294,otherfoodohome,1.771274259
+Tobacco,292,otherfoodohome,0
+Iodized salt,221,spices,0
+Non-iodized salt,222,spices,0
+Tea leaves,240,spices,0.01
+Pickles,244,spices,0.11
+Ash gourd,61,vegetables,0.13
+Bangi (Musk melon),320,fruits,0.16
+Tomato,58,vegetables,0.16
+Radish,66,vegetables,0.16
+Cucumber,71,vegetables,0.17
+Danta (amaranth),73,vegetables,0.21
+Tarmuj (Water melon),319,fruits,0.22
+Cabbage,100,leafyveg,0.24
+Patal,54,vegetables,0.24
+Palang Shak (spinach),111,leafyveg,0.25
+Pui (Indian spinach),96,leafyveg,0.25
+Cauliflower,67,vegetables,0.25
+Eggplant,57,vegetables,0.25
+Lau Shak,107,leafyveg,0.26
+Shalgom,94,vegetables,0.26
+Pumpkin,59,vegetables,0.26
+Mustard leaves,115,leafyveg,0.27
+Tea –prepared,248,drinks,0.29
+Jhinga (ribbed gourd),82,vegetables,0.29
+Papaya,297,fruits,0.3
+Lal Shak (red amaranth),97,leafyveg,0.32
+Pat Shak,108,leafyveg,0.32
+Radish leaves,116,leafyveg,0.32
+Danta Shak,101,leafyveg,0.32
+Sugarcane/palm/date juice,252,drinks,0.33
+Green Papaya,69,vegetables,0.33
+Okra,56,vegetables,0.33
+Sweet gourd,60,vegetables,0.34
+Water gourd,63,vegetables,0.34
+Bitter gourd,55,vegetables,0.34
+Coke/ Seven-up etc/Pepci/RC/Urocola etc,249,drinks,0.38
+Pomelo,305,fruits,0.38
+Jaamrul,323,fruits,0.39
+Buttermilk,146,dairy,0.4
+Dried chili,215,spices,0.4
+Fig,84,vegetables,0.4
+Onion,77,vegetables,0.4
+Green chili,70,vegetables,0.4
+Milk in Tea,140,dairy,0.41
+Karambola,308,fruits,0.41
+Carrot,65,vegetables,0.41
+Shapla,80,vegetables,0.41875
+Beher gura,90,vegetables,0.41875
+Dhundal,79,vegetables,0.41875
+Other vegetable,95,vegetables,0.41875
+Milk,139,dairy,0.42
+Black berry,303,fruits,0.43
+Pine apple,321,fruits,0.43
+Kalmi Shak,103,leafyveg,0.43
+Drum stick,85,vegetables,0.43
+Bathua,98,leafyveg,0.4383333333
+Black gram leaves,119,leafyveg,0.4383333333
+Bokful,99,leafyveg,0.4383333333
+Darkuni Shak,125,leafyveg,0.4383333333
+Dhania Shak,110,leafyveg,0.4383333333
+Dudhali Pata,118,leafyveg,0.4383333333
+Geema Shak,123,leafyveg,0.4383333333
+Kachu Shak,104,leafyveg,0.4383333333
+Katanate,106,leafyveg,0.4383333333
+Khesari Shak,122,leafyveg,0.4383333333
+Mixed leafy vegetables,117,leafyveg,0.4383333333
+Neem Shak,124,leafyveg,0.4383333333
+Other leafy vegetables,126,leafyveg,0.4383333333
+Pea leaves,113,leafyveg,0.4383333333
+Swett gourd leaves,121,leafyveg,0.4383333333
+Salad,270,otherfoodohome,0.4383333333
+Packaged Juice,250,drinks,0.46
+Orange,298,fruits,0.47
+Helencha,102,leafyveg,0.49
+Sheem,64,vegetables,0.5
+Amra,307,fruits,0.51
+Baking powder,235,spices,0.53
+Fresh 100% fruit juice,253,drinks,0.54
+Lemon,314,fruits,0.56
+Yogurt,144,dairy,0.59
+Jujube/dried jujube,310,fruits,0.6
+Kakrol,93,vegetables,0.61
+Litchis,302,fruits,0.62
+Apple,299,fruits,0.62
+Kalo kachu Shak,105,leafyveg,0.62
+Guava,309,fruits,0.63
+Katla,151,fishlarge,0.63814602
+Kachki,189,fishsmall,0.63814602
+Chalta,318,fruits,0.64
+Fish egg,137,meategg,0.65
+Mustard,229,spices,0.66
+Potato,74,vegetables,0.66
+Mete alu,89,vegetables,0.66
+Dalim,313,fruits,0.67
+Dheki Shak,109,leafyveg,0.68
+Other fruit,324,fruits,0.6962068966
+Chewa,199,fishsmall,0.69789752
+Drumstick leaves,114,leafyveg,0.72
+Taki,168,fishlarge,0.73135836
+Jack Fruit,301,fruits,0.74
+Green jackfruit,87,vegetables,0.74
+Jack fruit seed,92,vegetables,0.74
+Mango,295,fruits,0.76
+Green mango,76,vegetables,0.76
+Mague,169,fishlarge,0.77915956
+Fresh Ginger,225,spices,0.8
+Ata (bullock's heart),317,fruits,0.81
+Green pea,83,vegetables,0.81
+Boal,156,fishlarge,0.81023034
+Grass Carp,162,fishlarge,0.81501046
+Sobeda,322,fruits,0.83
+Chela,192,fishsmall,0.83413094
+Baicha,203,fishsmall,0.84608124
+Khalisa,191,fishsmall,0.84608124
+Sweet potato,75,vegetables,0.86
+Mrigel,152,fishlarge,0.86759178
+Small prawn,210,fishsmall,0.86998184
+Shapla/padda/rupsha fish,174,fishlarge,0.87954208
+Aair,157,fishlarge,0.89149238
+Singi,170,fishlarge,0.89388244
+Mirror Carp,163,fishlarge,0.91061286
+Karfu fish,208,fishsmall,0.91061286
+Foli,201,fishsmall,0.91778304
+Ritha,159,fishlarge,0.9201731
+Chapila,193,fishsmall,0.9201731
+Dhela,187,fishsmall,0.92495322
+Telapia,165,fishlarge,0.9321234
+Solid Cheese Curds,147,dairy,0.94
+Grapes,306,fruits,0.94
+Curd,272,otherfoodohome,0.94
+Banana,296,fruits,0.95
+Green banana,68,vegetables,0.95
+Kalibaus,153,fishlarge,0.956024
+Chanda,190,fishsmall,0.956024
+Tatkeni,195,fishsmall,0.9679743
+Gura mach,181,fishsmall,0.9799246
+Other small fish,214,fishsmall,0.9799246
+Panch mishali,182,fishsmall,0.9799246
+Cottage cheese or Paneer,145,dairy,0.98
+Piaju,276,otherfoodohome,1
+Horlicks/Bournvita,251,drinks,1.007777778
+Other drink,254,drinks,1.007777778
+Rui,150,fishlarge,1.00860532
+Poa,200,fishsmall,1.00860532
+Tengra,184,fishsmall,1.02294568
+Kachu (arum),72,vegetables,1.03
+Kachur lati,81,vegetables,1.03
+Golda Chingree,176,fishlarge,1.03011586
+Surma,154,fishlarge,1.03011586
+Ghutum,197,fishsmall,1.03011586
+Silver Carp,164,fishlarge,1.0396761
+Moa/mola,186,fishsmall,1.0635767
+Bata,196,fishsmall,1.06596676
+Non-parboiled rice (coarse),2,cereals,1.09
+Puti,183,fishsmall,1.10659778
+Bel,304,fruits,1.11
+Parboiled rice (coarse),1,cereals,1.12
+Other big fish,180,fishlarge,1.13049838
+Chicken,129,meategg,1.16
+Barley,13,cereals,1.23
+Bhuna curry,268,otherfoodohome,1.27
+Polao/Biryani/Tehari,258,otherfoodohome,1.28
+Duck,130,meategg,1.3
+Chestnut,30,pulses,1.31
+Liver,133,meategg,1.313333333
+Bids/bok/gughu,132,meategg,1.346875
+Other meat or egg,138,meategg,1.346875
+Stomach of beef/goat,134,meategg,1.346875
+Pigeon,131,meategg,1.37
+Corn,15,cereals,1.47
+Onion/garlic stalk,112,leafyveg,1.47
+Garlic,78,vegetables,1.47
+Jatka,161,fishlarge,1.47705708
+Beef/buffalo,127,meategg,1.49
+Dates,315,fruits,1.5
+Chips,284,otherfoodohome,1.52
+Any fried food,290,otherfoodohome,1.52
+Chocolate,285,otherfoodohome,1.55
+Mung,23,pulses,1.61
+Khichuri,257,otherfoodohome,1.63
+Other dairy,149,dairy,1.735384615
+Swarputi,166,fishlarge,1.74235374
+Olive,311,fruits,1.75
+Koi,172,fishlarge,1.76147422
+Kajari,194,fishsmall,1.79493506
+Chanachur,280,otherfoodohome,1.91
+Palshe,206,fishsmall,1.94311878
+Egg,136,meategg,1.944285714
+Mutton,128,meategg,1.96
+Chotpoti,279,otherfoodohome,2
+Jhol curry,267,otherfoodohome,2.05
+Ice Cream,148,dairy,2.07
+Ice cream,293,otherfoodohome,2.07
+Alur chap,273,otherfoodohome,2.15
+Bharta,265,otherfoodohome,2.16
+Pangash,158,fishlarge,2.2108055
+Hilsa,160,fishlarge,2.4378612
+Cinnamon,220,spices,2.47
+Chhola/ghugni/boot,277,otherfoodohome,2.5
+Fermented fish,213,fishsmall,2.50717294
+Elachi,219,spices,2.61
+Dried Ginger,226,spices,2.622
+Garam Masala,227,spices,2.622
+Mouri,231,spices,2.622
+Other spices or sweetener,247,spices,2.622
+Panchforan,223,spices,2.622
+Tamarind,312,fruits,2.7
+Ruti/Parota,259,otherfoodohome,2.7
+Bonroti/paoroti,260,otherfoodohome,2.7
+Dried meat,135,meategg,2.71
+Patties,283,otherfoodohome,2.78
+Daal,269,otherfoodohome,2.8
+Nimki,289,otherfoodohome,2.889047619
+Panta Bhaat,256,otherfoodohome,2.889047619
+Pitha,263,otherfoodohome,2.889047619
+Puri,275,otherfoodohome,2.889047619
+Rice/Jao,255,otherfoodohome,2.889047619
+Almond/Badam,28,pulses,2.89875
+Dried Chick pea,19,pulses,2.89875
+Hickory,32,pulses,2.89875
+Shem bitchi,25,pulses,2.89875
+Anchor daal,20,pulses,2.89875
+Cerelac,16,cereals,2.903023256
+Chaatu,10,cereals,2.903023256
+Fine rice,3,cereals,2.903023256
+Sagu,14,cereals,2.903023256
+Burger,261,otherfoodohome,2.95
+Honey,242,spices,3.04
+Singara,274,otherfoodohome,3.08
+Dried small shrimp/prawn,211,fishsmall,3.15965932
+Dried Lentil,18,pulses,3.17
+Dried fish,179,fishlarge,3.2026804
+Condensed Milk,142,dairy,3.21
+Dried Pea,24,pulses,3.27
+Turmeric (dried),217,spices,3.35
+Turmeric (not dried),216,spices,3.35
+Coriander,224,spices,3.36
+Biscuit,281,otherfoodohome,3.44
+Maida (wheat flour w/o bran),8,cereals,3.46
+Wheat,6,cereals,3.46
+Semai/noodles,9,cereals,3.47
+Black gram,21,pulses,3.5
+Khesari,22,pulses,3.52
+Tejpata,234,spices,3.53
+Atta,7,cereals,3.55
+Chira (flattened rice),11,cereals,3.56
+Chewing gum,286,otherfoodohome,3.6
+Cake,282,otherfoodohome,3.61
+Rice flour,4,cereals,3.66
+Suji (cream of wheat/barley),5,cereals,3.69
+Muri/Khoi (puffed rice),12,cereals,3.705
+Dried small fish,212,fishsmall,3.8479966
+Gur,238,spices,3.85
+"Sugar, including in Tea",237,spices,3.87
+Coconut,300,fruits,3.89
+Green Coconut,316,fruits,3.89
+Misri/tal mistri,239,spices,3.98
+Black cumin,228,spices,4.02
+Jira,218,spices,4.02
+Soybean bori,91,vegetables,4.24
+Sweets,271,otherfoodohome,4.245925926
+Powdered Milk,141,dairy,4.96
+Flaxseed,39,pulses,5.34
+Til (sesame),230,spices,5.63
+Pumpkin Seed,41,pulses,5.8
+Groundnut,26,pulses,5.85
+Any nut butters,44,pulses,5.88
+Cashew Nut,27,pulses,5.95
+Hazelnut,31,pulses,6.28
+Brazilnut,29,pulses,6.56
+Butter,143,dairy,7.17
+Other oil,53,oil,8.594166667
+Ghee,49,oil,8.98
+Dalda/banspati,48,oil,9
+Red Palm Oil,50,oil,9
+Yellow Palm Oil,51,oil,9
+Mustard,47,oil,9
+Sesame oil,52,oil,9
+Soybean,46,oil,9
