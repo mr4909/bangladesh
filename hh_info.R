@@ -38,8 +38,8 @@ for(p in requiredPackages){
 # import
 #########
 
-# set wd
-mydirectory <- "/Users/mari/bangladesh/bangladesh_food/data"
+# set working directory
+mydirectory <- "/Users/mr4909/bangladesh/data"
 setwd(mydirectory)
 
 filenames <- list.files(path=mydirectory, pattern=".*dta")

@@ -29,7 +29,7 @@ for(p in requiredPackages){
 #########
 
 # set working directory
-setwd("/Users/mari/bangladesh/bangladesh_food/data")
+setwd("/Users/mr4909/bangladesh/data")
 
 # read food info (calories, food names)
 food_info <- read_csv("food_info_mari.csv")
@@ -50,8 +50,8 @@ fd_1 <- fd_1 %>% filter(crowdsource==0 & recall=="week") %>%
   # select variables
   select(hh_ID, 
          food_1_ID,
-         submissiondate, 
-         recall, # month 516 season 272 week 4944
+         #submissiondate, 
+         #recall, # month 516 season 272 week 4944
          week_number, #3:50 weeks
          food_list, # groups of foods consumed
          food_count) # number of food types reported
@@ -61,6 +61,9 @@ fd_2 <- fd_2 %>% select(hh_ID, food_1_ID, food_2_ID, food_grp_namec)
 
 # merge food datasets / missing values for food_type = food ID number
 fd_1_2 <- merge(fd_1,fd_2, by=c("hh_ID","food_1_ID"))
+
+# keep unique values
+fd_1_2 <- fd_1_2 %>% distinct()
 
 # import food names and quantities
 fd_3 <- fd_3 %>% select(hh_ID, 
@@ -82,6 +85,14 @@ fd_all <- merge(fd_1_2,fd_3, by=c("hh_ID","food_2_ID"))
 # remove missing values for now.
 fd_all <- fd_all[complete.cases(fd_all),]
 
+# remove unwanted variables
+fd_all <- fd_all %>% select(hh_ID,
+                            week_number,
+                            food_ID,
+                            food_grp_namec,
+                            food_type_quant,
+                            food_type_unit)
+
 #########
 # Calories
 #########
@@ -89,24 +100,9 @@ fd_all <- fd_all[complete.cases(fd_all),]
 # merge with food list names 
 food <- merge(food_info, fd_all, by="food_ID")
 
-# select variables
+# select/reorder variables
 food <- food %>% select(hh_ID,
                         week_number,
-                        food_ID,
-                        food_count,
-                        food_name,
-                        food_name_type,
-                        food_type_quant,
-                        food_type_unit)
-
-# merge with food calories/info
-food <- merge(food, food_info, by=c("food_ID","food_name_type","food_name"))
-
-# reorder variables
-food <- food %>% select(hh_ID,
-                        week_number,
-                        food_ID,
-                        food_count,
                         food_name,
                         food_name_type,
                         food_type_quant,
@@ -134,35 +130,6 @@ food <- food %>%
                                           (food_type_unit==5) ~ calories_grams*food_type_quant,
                                           (food_type_unit==6) ~ calories_grams*(food_type_quant*4.2),
                                           (food_type_unit==7) ~ calories_grams*(food_type_quant*0.05)))
-
-# rearrange columns
-food <- food %>% select(hh_ID,
-                        submissiondate,
-                        recall,
-                        week_number,
-                        food_ID,
-                        food_count,
-                        food_name,
-                        food_name_type,
-                        food_type_quant,
-                        food_type_unit,
-                        calories_grams,
-                        calories_total_grams,
-                        quant_pur,
-                        quant_own,
-                        quant_other,
-                        quant_pur_pct,
-                        quant_own_pct,
-                        quant_other_pct,
-                        #time_of_day,
-                        food_1_ID,
-                        food_2_ID,
-                        food_3_ID)
-
-# check for outliers
-# summary(food$calories_total_grams)
-# Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-#       0     200     640    6485    1610 4500000    1887 
 
 #########
 ## Fix Food Units Claimed As Counts
@@ -392,8 +359,8 @@ count$calories_total_grams = as.numeric(
                                  count$food_name=="Sobeda" ~ count$calories_grams*count$food_type_quant*100,
                                  count$food_name=="Jaamrul" ~ count$calories_grams*count$food_type_quant*100)))
 
-# # check for outliers
-# summary(count$calories_total_grams)
+# check for outliers
+summary(count$calories_total_grams)
 
 #########
 ## Fix Food Units For No Counts
@@ -417,7 +384,7 @@ nodrops <- nocount %>% filter(food_type_unit != 7 & food_name_type != "oil")
 nocount <- rbind(drops,nodrops)
 
 # merge count and no count datasets
-fd_all <- rbind(nocount, count)
+food <- rbind(nocount, count)
 
 ########################################################################
 ########################################################################
@@ -428,36 +395,39 @@ fd_all <- rbind(nocount, count)
 ########################################################################
 
 # remove missing data 
-fd_all <- fd_all[complete.cases(fd_all),]
+food <- food[complete.cases(food),]
 
 # check for outliers for 13351 occurences
-summary(fd_all$calories_total_grams)
+summary(food$calories_total_grams)
 # Min. 1st Qu.  Median    Mean    3rd Qu.    Max. 
 # 0     147     500       2606    1254      2210806 
 
 # actual values of the outliers
-boxplot(fd_all$calories_total_grams)$out
+boxplot(food$calories_total_grams)$out
 
 # assign the outlier values into a vector
-outliers <- boxplot(fd_all$calories_total_grams, plot=FALSE)$out
+outliers <- boxplot(food$calories_total_grams, plot=FALSE)$out
 
 # check the results
 print(outliers)
 
 # rows the outliers are
-fd_all[which(fd_all$calories_total_grams %in% outliers),]
+food[which(food$calories_total_grams %in% outliers),]
 
 # remove the rows containing the outliers
-fd_all <- fd_all[-which(fd_all$calories_total_grams %in% outliers),]
+food <- food[-which(food$calories_total_grams %in% outliers),]
 
 # check now with boxplot, outliers are gone
-boxplot(fd_all$calories_total_grams)
+boxplot(food$calories_total_grams)
 
 # copy df
-fd <- fd_all
+fd <- food
 
 # calculate number of submissions
-myfreqs <- fd %>% group_by(hh_ID, week_number) %>% summarise(freq = n())
+myfreqs <- fd %>% group_by(hh_ID, week_number) %>% summarise(num_submissions = n())
+
+# merge frequencies with food data
+fd <- merge(fd, myfreqs, by = c("hh_ID","week_number"))
 
 #########
 # calculate proportions
@@ -513,50 +483,86 @@ fd <- fd %>% mutate(avg_calories_pp = calories_total_grams/hh_members)
 #########
 
 fish <- fd %>% group_by(hh_ID, week_number) %>% tally(fish_calories)
-fish <- fish %>% mutate(fish_calories_wk = n) %>% select(-n)
+        fish <- fish %>% mutate(fish_calories_wk = n) %>% select(-n)
 meat <- fd %>% group_by(hh_ID, week_number) %>% tally(meat_calories)
-meat <- meat %>% mutate(meat_calories_wk = n) %>% select(-n)
+        meat <- meat %>% mutate(meat_calories_wk = n) %>% select(-n)
 protein <- fd %>% group_by(hh_ID, week_number) %>% tally(protein_calories)
-protein <- protein %>% mutate(protein_calories_wk = n) %>% select(-n)
+        protein <- protein %>% mutate(protein_calories_wk = n) %>% select(-n)
+
+# merge fish meat protein        
 weekly_protein <- merge(fish, meat, by = c("hh_ID","week_number"))
-weekly_protein <- merge(weekly_protein, protein, by = c("hh_ID","week_number"))
+                  weekly_protein <- merge(weekly_protein, protein, by = c("hh_ID","week_number"))
 
-# write csv
-write.csv(weekly_protein, "weekly_protein.csv")
+# select variables
+fd <- fd %>% select(hh_ID,
+                    week_number,
+                    num_submissions,
+                    calories_total_grams,
+                    avg_calories_pp,
+                    pct_meat,
+                    pct_fish,
+                    pct_protein)
 
-# selct variables
-summaries <- fd %>% select(hh_ID, 
-                          freq,
-                          pct_meat, 
-                          pct_fish, 
-                          pct_protein, 
-                          meat_calories,
-                          fish_calories,
-                          protein_calories,
-                          calories_total_grams,
-                          avg_calories_pp)
-summaries <- summaries %>% group_by(hh_ID) %>% summarise_each(funs(mean, sd, var))
+# find averages / totals
+week_sums <- fd %>% select(hh_ID, week_number, calories_total_grams, avg_calories_pp)
+
+week_sums <- week_sums %>% 
+  group_by(hh_ID, week_number) %>% 
+  summarise_each(funs(sum))                  
+
+# get pcts
+temp <- fd %>% select(-calories_total_grams,-avg_calories_pp) %>% distinct()
+
+# merge pcts with other info                  
+fooddairy_week <- merge(temp, week_sums, by = c("hh_ID","week_number"))
+
+# merge with hh_info
+fooddairy_week <- merge(hh_count, fooddairy_week, by = c("hh_ID"))
+
+fooddiary <- fooddairy_week %>% mutate(calories_total = calories_total_grams,
+                                       avg_calories_pp = avg_weekly_calories_pp) %>% select(-calories_total_grams, -avg_weekly_calories_pp)
+
+# rename and reorder variabkes
+fooddiary <- fooddiary %>% select(hh_ID,
+                                  week_number,
+                                  calories_total,
+                                  member_1_ID, 
+                                  hh_members, 
+                                  avg_calories_pp,
+                                  pct_fish,
+                                  pct_meat,
+                                  pct_protein,
+                                  num_submissions)
+
 
 # merge with basic info
 # 176 households
 final_data <- merge(summaries, hh_respondent, by = "hh_ID")
 
-# write csvs
-write.csv(fd, "fooddiary_week.csv")
+final_data <- merge(fooddiary, hh_respondent, by = c("hh_ID","hh_members"))
 write.csv(final_data, "final_data.csv")
 
-# Andrew Data
-# [1] "X1"                     "hh_ID"                  "week_number"            "calories_total"        
-# [5] "member_1_ID"            "hh_members"             "avg_weekly_calories_pp" "pct_fish"              
-# [9] "pct_meat"               "pct_protein"            "num_submissions"  
+# selct variables
+summaries <- fooddairy_week %>% select(hh_ID, 
+                                       freq = num_submissions,
+                                       pct_meat, 
+                                       pct_fish, 
+                                       pct_protein, 
+                                       calories_total_grams,
+                                       avg_calories_pp)
+summaries <- merge(summaries, weekly_protein, by = "hh_ID")
+summaries <- summaries %>% select(-week_number)
+summaries <- summaries %>% group_by(hh_ID) %>% summarise_each(funs(mean, sd, var))
+# merge with basic info
+# 176 households
+final_data <- merge(summaries, hh_respondent, by = "hh_ID")
 
+# write csvs
 
+write.csv(fooddiary, "fooddiary_week.csv")
 
+write.csv(weekly_protein, "weekly_protein.csv")
 
-
-
-
-
-
+write.csv(final_data, "final_data.csv")
 
 
