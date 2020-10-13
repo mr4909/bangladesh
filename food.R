@@ -16,6 +16,7 @@
 requiredPackages = c('dplyr', # data manipulation
                      'readr', # read files
                      'ggplot2', # plots
+                     'haven', # read dta
                      'tidyverse') # missing values using map
 # only downloads packages if needed
 for(p in requiredPackages){
@@ -53,25 +54,29 @@ fd_1 <- fd_1 %>% filter(crowdsource==0 & recall=="week") %>%
          recall, # month 516 season 272 week 4944
          week_number, #3:50 weeks
          food_list, # groups of foods consumed
-         food_count) # number of foods selected
+         food_count) # number of food types reported
 
 # import food types
-fd_2 <- fd_2 %>% select(hh_ID, food_1_ID, food_2_ID, food_grp_namec, food_type) #will require grepl
+fd_2 <- fd_2 %>% select(hh_ID, food_1_ID, food_2_ID, food_grp_namec) 
 
-# import food quantities, food names, and quantities
-fd_3 <- fd_3 %>% select(hh_ID, food_2_ID, food_3_ID, food_ID = food_type_name, 
-                                      food_type_quant,
-                                      food_type_unit,
-                                      quant_pur, #How much consumed was purchased?
-                                      quant_own, #How much consumed was own production?
-                                      quant_other) #How much consumed was from other sources?
-
-# merge food datasets
+# merge food datasets / missing values for food_type = food ID number
 fd_1_2 <- merge(fd_1,fd_2, by=c("hh_ID","food_1_ID"))
+
+# import food names and quantities
+fd_3 <- fd_3 %>% select(hh_ID, 
+                        food_2_ID, 
+                        food_3_ID, 
+                        food_ID = food_type_name, 
+                        food_type_quant,
+                        food_type_unit)
+                                      # quant_pur, #How much consumed was purchased?
+                                      # quant_own, #How much consumed was own production?
+                                      # quant_other) #How much consumed was from other sources?
+
 fd_all <- merge(fd_1_2,fd_3, by=c("hh_ID","food_2_ID"))
 
 # remove unwanted variables
-fd_all <- fd_all %>% select(-food_type) # duplicate variable
+# fd_all <- fd_all %>% select(-food_type) # duplicate variable
 
 # 118 food_type_name are missing
 # remove missing values for now.
@@ -86,34 +91,19 @@ food <- merge(food_info, fd_all, by="food_ID")
 
 # select variables
 food <- food %>% select(hh_ID,
-                        submissiondate,
-                        recall,
                         week_number,
                         food_ID,
                         food_count,
                         food_name,
                         food_name_type,
                         food_type_quant,
-                        food_type_unit,
-                        quant_pur,
-                        quant_own,
-                        quant_other,
-                        food_1_ID,
-                        food_2_ID,
-                        food_3_ID)
-
-# calculate percent purchased, grown, other
-food <- food %>% mutate(quant_pur_pct = quant_pur/food_type_quant,
-                                        quant_own_pct = quant_own/food_type_quant,
-                                        quant_other_pct = quant_other/food_type_quant)
+                        food_type_unit)
 
 # merge with food calories/info
 food <- merge(food, food_info, by=c("food_ID","food_name_type","food_name"))
 
 # reorder variables
 food <- food %>% select(hh_ID,
-                        submissiondate,
-                        recall,
                         week_number,
                         food_ID,
                         food_count,
@@ -121,22 +111,7 @@ food <- food %>% select(hh_ID,
                         food_name_type,
                         food_type_quant,
                         food_type_unit,
-                        calories_grams,
-                        quant_pur,
-                        quant_own,
-                        quant_other,
-                        quant_pur_pct,
-                        quant_own_pct,
-                        quant_other_pct,
-                        food_1_ID,
-                        food_2_ID,
-                        food_3_ID)
-
-# fix dates and times
-food <- food %>%
-  mutate(datetime = as.POSIXct(strptime(submissiondate, format = "%b %d, %Y %I:%M:%S %p")),
-         datetime_military = strftime(datetime, format = "%Y-%m-%d %H:%M"))
-food <- food %>% mutate(date_new = as.Date(as.POSIXct(strptime(datetime_military, format = "%Y-%m-%d"))))
+                        calories_grams)
 
 #########
 # *Food Type Unit* - need to be standardized
@@ -436,7 +411,6 @@ count$calories_total_grams = as.numeric(
 
 # merge count (unit = 8) and other dataset count to get complete df
 nocount <- food %>% filter(food_type_unit != 8)
-
 # remove foods counted as "drops" but aren't liquids
 drops <- nocount %>% filter(food_type_unit == 7 & food_name_type == "oil")
 nodrops <- nocount %>% filter(food_type_unit != 7 & food_name_type != "oil")
@@ -481,6 +455,9 @@ boxplot(fd_all$calories_total_grams)
 
 # copy df
 fd <- fd_all
+
+# calculate number of submissions
+myfreqs <- fd %>% group_by(hh_ID, week_number) %>% summarise(freq = n())
 
 #########
 # calculate proportions
@@ -567,3 +544,19 @@ final_data <- merge(summaries, hh_respondent, by = "hh_ID")
 # write csvs
 write.csv(fd, "fooddiary_week.csv")
 write.csv(final_data, "final_data.csv")
+
+# Andrew Data
+# [1] "X1"                     "hh_ID"                  "week_number"            "calories_total"        
+# [5] "member_1_ID"            "hh_members"             "avg_weekly_calories_pp" "pct_fish"              
+# [9] "pct_meat"               "pct_protein"            "num_submissions"  
+
+
+
+
+
+
+
+
+
+
+
